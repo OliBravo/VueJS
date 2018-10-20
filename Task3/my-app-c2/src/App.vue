@@ -11,22 +11,22 @@
   import ProductList from "./components/ProductList"
   import AddProduct from "./components/AddProduct"
 
+  import axios from 'axios'
+
   export default {
     name: 'app',
     components: {
         ProductList,
         AddProduct
         },
+
+    async created(){
+      this.products = await axios.get('products.json').then(res => res.data);
+    },
+    
     data() {
       return {
-        products: [{
-          id: 0,
-          name: 'item1'
-        },
-        {
-          id: 1,
-          name: 'item2'
-        }]
+        products: []
       }
     },
 

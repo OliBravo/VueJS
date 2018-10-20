@@ -2,7 +2,7 @@
   <div id="app">
     <form @submit.prevent="onSubmit()">
       <button>Add new item</button>
-      <input name="newitem"  v-model="newProduct.name">
+      <input name="newitem"  v-model="newProduct.Name">
       <!-- <div v-show="errors.has('newitem')" class="error-provider">
         {{ errors.first('newitem') }}
       </div> -->
@@ -16,7 +16,7 @@
     data() {
       return {
         newProduct: {
-          name: ''
+          Name: ''
         }
       }
     },
@@ -31,7 +31,7 @@
             ...this.newProduct
         }
           );
-          this.newProduct.name = '';
+          this.newProduct.Name = '';
           //this.$validator.reset();
         //})
 

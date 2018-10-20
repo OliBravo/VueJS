@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 7. We can use Angular-like double brackets to create an expression -->
-    <li v-for="i in products" :key="i.id">{{i.name}}</li>
+    <li v-for="i in products">{{ i.Name }}</li>
   </div>
 </template>
 
@@ -20,8 +20,8 @@
           if (!result) {
             return;
           }
-          this.products.push({ name: this.name });
-          this.name = '';
+          this.products.push({ Name: this.Name });
+          this.Name = '';
           this.$validator.reset();
         })
 

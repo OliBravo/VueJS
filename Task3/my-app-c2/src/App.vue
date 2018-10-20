@@ -21,7 +21,7 @@
         },
 
     async created(){
-      this.products = await axios.get('products.json').then(res => res.data);
+      this.products = await axios.get('https://www.booknomads.com/api/v0/isbn/9789000035526').then(res => res.data && res.data.Authors);
     },
     
     data() {

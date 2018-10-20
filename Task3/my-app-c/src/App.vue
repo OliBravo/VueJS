@@ -1,29 +1,56 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <add-product @add-product="onAddProduct"></add-product>
+
+    <product-list :products="products"></product-list>
+
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+<script>
+  import ProductList from "../components/ProductList"
+  import AddProduct from "../components/AddProduct"
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
+  export default {
+    name: 'app',
+    components: {
+        ProductList,
+        AddProduct
+        },
+    data() {
+      return {
+        products: [{
+          id: 0,
+          name: 'item1'
+        },
+        {
+          id: 1,
+          name: 'item2'
+        }]
+      }
+    },
+
+    methods: {
+      onAddProduct(product){
+        this.products.push(product);
+      }
+    }
+  }
+
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style>
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
+
+  .error-provider {
+    color: red;
+    font-size: 0.8em;
+  }
 </style>

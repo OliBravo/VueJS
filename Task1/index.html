@@ -23,10 +23,11 @@
 
   <!-- 6. If element matches the selector we added, Vue will create a binding -->
   <div id="app">
+    <button v-on:click="addItem()">Add new item</button>
     <!-- 7. We can use Angular-like double brackets to create an expression -->
     <li v-for="i in mylist">{{i.name}}</li>
 
-    <button v-on:click="addItem()">Add new item</button>
+    
   </div>
 
 

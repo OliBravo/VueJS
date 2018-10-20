@@ -1,7 +1,10 @@
 <template>
   <div id="app">
-    <button v-on:click="addItem()">Add new item</button>
-    <input v-model="name">
+    <form @submit.prevent="onSubmit()">
+      <button>Add new item</button>
+      <input v-model="name">
+    </form>
+
     <!-- 7. We can use Angular-like double brackets to create an expression -->
     <li v-for="i in mylist">{{i.name}}</li>
   </div>
@@ -21,16 +24,17 @@
           name: 'item2'
         }],
         name: ''
-      }},
+      }
+    },
 
-        methods: {
-        addItem() {
-          this.mylist.push({ name: this.name });
-          this.name = '';
-        }
+    methods: {
+      onSubmit() {
+        this.mylist.push({ name: this.name });
+        this.name = '';
       }
     }
-  
+  }
+
 </script>
 
 <style>

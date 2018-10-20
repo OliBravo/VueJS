@@ -2,7 +2,10 @@
   <div id="app">
     <form @submit.prevent="onSubmit()">
       <button>Add new item</button>
-      <input v-model="name">
+      <input name="newitem"  v-model="name" v-validate="'required'">
+      <div v-show="errors.has('newitem')" class="error-provider">
+        {{ errors.first('newitem') }}
+      </div>
     </form>
 
     <!-- 7. We can use Angular-like double brackets to create an expression -->
@@ -29,8 +32,15 @@
 
     methods: {
       onSubmit() {
-        this.mylist.push({ name: this.name });
-        this.name = '';
+        this.$validator.validateAll().then(result => {
+          if (!result) {
+            return;
+          }
+          this.mylist.push({ name: this.name });
+          this.name = '';
+          this.$validator.reset();
+        })
+
       }
     }
   }
@@ -45,5 +55,10 @@
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  .error-provider {
+    color: red;
+    font-size: 0.8em;
   }
 </style>
